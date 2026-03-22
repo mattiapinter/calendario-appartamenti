@@ -36,6 +36,15 @@
     "channel": "Krossbooking"
   },
   {
+    "id": 1004,
+    "aptId": 1,
+    "guest": "Bloccata",
+    "checkin": "2026-04-22",
+    "checkout": "2026-05-05",
+    "price": "",
+    "channel": "Krossbooking"
+  },
+  {
     "id": 2000,
     "aptId": 2,
     "guest": "DENIS PIKAIKIN (Booking)",
