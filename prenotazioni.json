@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1000,
+    "aptId": 1,
+    "guest": "Alberti Matteo (Booking)",
+    "checkin": "2026-06-14",
+    "checkout": "2026-07-01",
+    "price": "",
+    "channel": "Krossbooking"
+  },
+  {
+    "id": 1001,
+    "aptId": 1,
+    "guest": "Kubat Ales (Booking)",
+    "checkin": "2026-07-03",
+    "checkout": "2026-07-17",
+    "price": "",
+    "channel": "Krossbooking"
+  },
+  {
+    "id": 1002,
+    "aptId": 1,
+    "guest": "Brzostek Arkadiusz (Booking)",
+    "checkin": "2026-07-20",
+    "checkout": "2026-08-10",
+    "price": "",
+    "channel": "Krossbooking"
+  },
+  {
+    "id": 1003,
+    "aptId": 1,
+    "guest": "Greta Rossi (Airbnb)",
+    "checkin": "2026-08-31",
+    "checkout": "2026-09-11",
+    "price": "",
+    "channel": "Krossbooking"
+  }
+]
