@@ -56,9 +56,10 @@
     padding: 7px 16px;
     background: var(--warm-white);
     border-bottom: 1px solid var(--border);
-    font-size: 0.7rem;
-    color: var(--ink-muted);
+    font-size: 0.72rem;
+    font-weight: 500;
     text-align: right;
+    transition: color 0.3s;
   }
 
   main { padding: 20px 16px 60px; }
@@ -111,7 +112,7 @@
 
   @media (min-width: 600px) {
     main { padding: 24px 28px 60px; }
-    :root { --row-height: 118px; }
+    :root { --row-height: 136px; }
     .event-bar { font-size: 0.72rem; height: 24px; }
   }
 </style>
@@ -353,22 +354,23 @@ document.getElementById('modalOverlay').addEventListener('click', function(e) {
   if (e.target === this) this.classList.remove('open');
 });
 
-// Carica prenotazioni e mostra data aggiornamento
-fetch('https://api.github.com/repos/mattiapinter/calendario-appartamenti/commits?path=prenotazioni.json&per_page=1')
-  .then(r => r.json())
-  .then(commits => {
-    if (commits && commits[0]) {
-      const d = new Date(commits[0].commit.committer.date);
-      const ore = d.toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' });
-      const data = d.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
-      document.getElementById('lastUpdate').textContent = '🔄 Ultimo aggiornamento: ' + data + ' alle ' + ore;
-    }
-  })
-  .catch(() => {});
-
+// Carica prenotazioni e mostra ultimo controllo
 fetch('https://raw.githubusercontent.com/mattiapinter/calendario-appartamenti/main/prenotazioni.json?t=' + Date.now())
   .then(r => r.json())
-  .then(data => { bookings = data; render(); })
+  .then(data => {
+    bookings = data.bookings || data;
+    if (data.lastChecked) {
+      const d = new Date(data.lastChecked);
+      const ore = d.toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' });
+      const giorno = d.toLocaleDateString('it-IT', { day: 'numeric', month: 'long' });
+      const diffMin = (Date.now() - d.getTime()) / 60000;
+      const color = diffMin < 60 ? '#2D7A3A' : diffMin < 1440 ? '#B87320' : '#B82020';
+      const el = document.getElementById('lastUpdate');
+      el.textContent = '🔎 Ultimo Controllo da Kross: ' + giorno + ' alle ' + ore;
+      el.style.color = color;
+    }
+    render();
+  })
   .catch(() => render());
 </script>
 </body>
