@@ -541,7 +541,7 @@ function closeModal(e) {
 }
 
 // ─── INIT ─────────────────────────────────────────────────────────
-fetch('prenotazioni.json?t=' + Date.now())
+fetch('https://raw.githubusercontent.com/mattiapinter/calendario-appartamenti/main/prenotazioni.json?t=' + Date.now())
   .then(r => r.json())
   .then(data => { bookings = data; render(); })
   .catch(() => render()); // calendario vuoto se il JSON non esiste ancora
