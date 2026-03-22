@@ -294,8 +294,9 @@ function renderCalendar() {
       const checkoutInWeek = colEnd !== -1;
       // width: se checkout è in settimana, arriva a metà di quella colonna (+ 0.5 colonne)
       const fullCols = col2 - colStart + (checkoutInWeek ? 0.5 : 1);
-      const left  = colStart * colW + GAP;
-      const width = fullCols * colW - GAP * 2;
+      const startOffset = isCI ? 0.5 : 0;
+      const left  = (colStart + startOffset) * colW + GAP;
+      const width = (fullCols - startOffset) * colW - GAP * 2;
 
       const bar = document.createElement('div');
       bar.className = 'event-bar';
