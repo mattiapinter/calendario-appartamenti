@@ -255,48 +255,55 @@ function renderCalendar() {
     const weekStart = dateOf(week[0].yr, week[0].mo, week[0].day);
     const weekEnd   = dateOf(week[6].yr, week[6].mo, week[6].day);
 
-    // Prenotazioni visibili questa settimana
-    // La pill va dal checkin fino a METÀ del giorno di checkout
     const visible = bookings.filter(b => {
       if (!activeApts.has(b.aptId)) return false;
       const ci = parseDate(b.checkin);
-      const co = parseDate(b.checkout); // checkout = la pill arriva a metà di questo giorno
+      const co = parseDate(b.checkout);
       return d2t(co) >= d2t(weekStart) && d2t(ci) <= d2t(weekEnd);
     }).sort((a, b) => a.aptId - b.aptId);
 
-    const laneNext = [];
-    visible.forEach(b => {
+    // Calcola posizione di ogni bar (left, width in unità di mezza-colonna)
+    // Ogni colonna = 2 half-col. Checkin parte a metà col → offset +1. Checkout finisce a metà col → +1.
+    const barInfos = visible.map(b => {
       const ci = parseDate(b.checkin);
       const co = parseDate(b.checkout);
-
-      // barStart = primo giorno visibile nella settimana
       const barStart = d2t(ci) >= d2t(weekStart) ? ci : weekStart;
-      // barEnd = giorno checkout (la pill finirà a metà di quel giorno)
       const barEndDay = d2t(co) <= d2t(weekEnd) ? co : weekEnd;
 
       const colStart = week.findIndex(c => d2t(dateOf(c.yr, c.mo, c.day)) === d2t(barStart));
       const colEnd   = week.findIndex(c => d2t(dateOf(c.yr, c.mo, c.day)) === d2t(barEndDay));
-
-      // Se checkout è oltre la settimana, la pill arriva fino a fine settimana (colEnd = 6)
       const col2 = colEnd === -1 ? 6 : colEnd;
-      if (colStart === -1) return;
+      if (colStart === -1) return null;
 
-      // Lane
-      let lane = 0;
-      while (laneNext[lane] !== undefined && laneNext[lane] > d2t(barStart)) lane++;
-      laneNext[lane] = d2t(barEndDay) + 86400000;
-
-      const apt = getApt(b.aptId);
-      const topPx = TOP + lane * (BAR_H + 3);
       const isCI = d2t(ci) === d2t(barStart);
-
-      // La pill finisce a metà del giorno di checkout se il checkout cade in questa settimana
       const checkoutInWeek = colEnd !== -1;
-      // width: se checkout è in settimana, arriva a metà di quella colonna (+ 0.5 colonne)
-      const fullCols = col2 - colStart + (checkoutInWeek ? 0.5 : 1);
-      const startOffset = isCI ? 0.5 : 0;
-      const left  = (colStart + startOffset) * colW + GAP;
-      const width = (fullCols - startOffset) * colW - GAP * 2;
+
+      // half-col units: 0..13 (0=inizio lun, 1=metà lun, 2=inizio mar, ...)
+      const hStart = colStart * 2 + (isCI ? 1 : 0);
+      const hEnd   = col2 * 2 + (checkoutInWeek ? 1 : 2);
+
+      return { b, hStart, hEnd, isCI, checkoutInWeek, col2, colStart };
+    }).filter(Boolean);
+
+    // Lane assignment: due bar possono stare sulla stessa lane se non si sovrappongono
+    // Considera hEnd esclusivo per confronto (con 1 gap di tolleranza)
+    const lanes = []; // lanes[i] = hEnd dell'ultimo bar in quella lane
+    const assigned = barInfos.map(info => {
+      let lane = 0;
+      while (lanes[lane] !== undefined && lanes[lane] > info.hStart) lane++;
+      lanes[lane] = info.hEnd;
+      return { ...info, lane };
+    });
+
+    assigned.forEach(({ b, hStart, hEnd, isCI, checkoutInWeek, lane }) => {
+      const apt = getApt(b.aptId);
+      const colW = 100 / 7;
+      const halfW = colW / 2;
+      const GAP = 0.4;
+
+      const left  = hStart * halfW + GAP;
+      const width = (hEnd - hStart) * halfW - GAP * 2;
+      const topPx = TOP + lane * (BAR_H + 3);
 
       const bar = document.createElement('div');
       bar.className = 'event-bar';
