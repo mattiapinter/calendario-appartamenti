@@ -1,173 +1,176 @@
-[
-  {
-    "id": 1000,
-    "aptId": 1,
-    "guest": "Alberti Matteo (Booking)",
-    "checkin": "2026-06-14",
-    "checkout": "2026-07-01",
-    "price": "",
-    "channel": "Krossbooking"
-  },
-  {
-    "id": 1001,
-    "aptId": 1,
-    "guest": "Kubat Ales (Booking)",
-    "checkin": "2026-07-03",
-    "checkout": "2026-07-17",
-    "price": "",
-    "channel": "Krossbooking"
-  },
-  {
-    "id": 1002,
-    "aptId": 1,
-    "guest": "Brzostek Arkadiusz (Booking)",
-    "checkin": "2026-07-20",
-    "checkout": "2026-08-10",
-    "price": "",
-    "channel": "Krossbooking"
-  },
-  {
-    "id": 1003,
-    "aptId": 1,
-    "guest": "Greta Rossi (Airbnb)",
-    "checkin": "2026-08-31",
-    "checkout": "2026-09-11",
-    "price": "",
-    "channel": "Krossbooking"
-  },
-  {
-    "id": 1004,
-    "aptId": 1,
-    "guest": "Bloccata",
-    "checkin": "2026-04-22",
-    "checkout": "2026-05-05",
-    "price": "",
-    "channel": "Krossbooking"
-  },
-  {
-    "id": 2000,
-    "aptId": 2,
-    "guest": "DENIS PIKAIKIN (Booking)",
-    "checkin": "2026-05-26",
-    "checkout": "2026-06-02",
-    "price": "",
-    "channel": "Krossbooking"
-  },
-  {
-    "id": 2001,
-    "aptId": 2,
-    "guest": "Nyolczas Peter (Booking)",
-    "checkin": "2026-06-04",
-    "checkout": "2026-06-11",
-    "price": "",
-    "channel": "Krossbooking"
-  },
-  {
-    "id": 2002,
-    "aptId": 2,
-    "guest": "Merai Ester (Booking)",
-    "checkin": "2026-06-16",
-    "checkout": "2026-06-30",
-    "price": "",
-    "channel": "Krossbooking"
-  },
-  {
-    "id": 2003,
-    "aptId": 2,
-    "guest": "Sochor Martin (Booking)",
-    "checkin": "2026-07-03",
-    "checkout": "2026-07-17",
-    "price": "",
-    "channel": "Krossbooking"
-  },
-  {
-    "id": 2004,
-    "aptId": 2,
-    "guest": "Jovanovic Ivan (Booking)",
-    "checkin": "2026-08-04",
-    "checkout": "2026-08-14",
-    "price": "",
-    "channel": "Krossbooking"
-  },
-  {
-    "id": 2005,
-    "aptId": 2,
-    "guest": "Bacciu Daniele (Booking)",
-    "checkin": "2026-09-02",
-    "checkout": "2026-09-16",
-    "price": "",
-    "channel": "Krossbooking"
-  },
-  {
-    "id": 2006,
-    "aptId": 2,
-    "guest": "Bloccata",
-    "checkin": "2026-09-19",
-    "checkout": "2026-09-27",
-    "price": "",
-    "channel": "Krossbooking"
-  },
-  {
-    "id": 3000,
-    "aptId": 3,
-    "guest": "Dolso Daniele (Booking)",
-    "checkin": "2026-03-19",
-    "checkout": "2026-03-25",
-    "price": "",
-    "channel": "Krossbooking"
-  },
-  {
-    "id": 3001,
-    "aptId": 3,
-    "guest": "De Mercato Luigi (Booking)",
-    "checkin": "2026-06-27",
-    "checkout": "2026-07-04",
-    "price": "",
-    "channel": "Krossbooking"
-  },
-  {
-    "id": 3002,
-    "aptId": 3,
-    "guest": "Gavioli Barbara (Booking)",
-    "checkin": "2026-07-04",
-    "checkout": "2026-07-11",
-    "price": "",
-    "channel": "Krossbooking"
-  },
-  {
-    "id": 3003,
-    "aptId": 3,
-    "guest": "Gio Batta Figari",
-    "checkin": "2026-07-14",
-    "checkout": "2026-08-01",
-    "price": "",
-    "channel": "Krossbooking"
-  },
-  {
-    "id": 3004,
-    "aptId": 3,
-    "guest": "Massimo Barducci",
-    "checkin": "2026-08-01",
-    "checkout": "2026-08-08",
-    "price": "",
-    "channel": "Krossbooking"
-  },
-  {
-    "id": 3005,
-    "aptId": 3,
-    "guest": "Fossati Michela (Booking)",
-    "checkin": "2026-08-17",
-    "checkout": "2026-08-29",
-    "price": "",
-    "channel": "Krossbooking"
-  },
-  {
-    "id": 3006,
-    "aptId": 3,
-    "guest": "Davide Polenta",
-    "checkin": "2026-08-29",
-    "checkout": "2026-09-05",
-    "price": "",
-    "channel": "Krossbooking"
-  }
-]
+{
+  "lastChecked": "2026-03-22T18:18:03.447Z",
+  "bookings": [
+    {
+      "id": 1000,
+      "aptId": 1,
+      "guest": "Alberti Matteo (Booking)",
+      "checkin": "2026-06-14",
+      "checkout": "2026-07-01",
+      "price": "",
+      "channel": "Krossbooking"
+    },
+    {
+      "id": 1001,
+      "aptId": 1,
+      "guest": "Kubat Ales (Booking)",
+      "checkin": "2026-07-03",
+      "checkout": "2026-07-17",
+      "price": "",
+      "channel": "Krossbooking"
+    },
+    {
+      "id": 1002,
+      "aptId": 1,
+      "guest": "Brzostek Arkadiusz (Booking)",
+      "checkin": "2026-07-20",
+      "checkout": "2026-08-10",
+      "price": "",
+      "channel": "Krossbooking"
+    },
+    {
+      "id": 1003,
+      "aptId": 1,
+      "guest": "Greta Rossi (Airbnb)",
+      "checkin": "2026-08-31",
+      "checkout": "2026-09-11",
+      "price": "",
+      "channel": "Krossbooking"
+    },
+    {
+      "id": 1004,
+      "aptId": 1,
+      "guest": "Bloccata",
+      "checkin": "2026-04-22",
+      "checkout": "2026-05-05",
+      "price": "",
+      "channel": "Krossbooking"
+    },
+    {
+      "id": 2000,
+      "aptId": 2,
+      "guest": "DENIS PIKAIKIN (Booking)",
+      "checkin": "2026-05-26",
+      "checkout": "2026-06-02",
+      "price": "",
+      "channel": "Krossbooking"
+    },
+    {
+      "id": 2001,
+      "aptId": 2,
+      "guest": "Nyolczas Peter (Booking)",
+      "checkin": "2026-06-04",
+      "checkout": "2026-06-11",
+      "price": "",
+      "channel": "Krossbooking"
+    },
+    {
+      "id": 2002,
+      "aptId": 2,
+      "guest": "Merai Ester (Booking)",
+      "checkin": "2026-06-16",
+      "checkout": "2026-06-30",
+      "price": "",
+      "channel": "Krossbooking"
+    },
+    {
+      "id": 2003,
+      "aptId": 2,
+      "guest": "Sochor Martin (Booking)",
+      "checkin": "2026-07-03",
+      "checkout": "2026-07-17",
+      "price": "",
+      "channel": "Krossbooking"
+    },
+    {
+      "id": 2004,
+      "aptId": 2,
+      "guest": "Jovanovic Ivan (Booking)",
+      "checkin": "2026-08-04",
+      "checkout": "2026-08-14",
+      "price": "",
+      "channel": "Krossbooking"
+    },
+    {
+      "id": 2005,
+      "aptId": 2,
+      "guest": "Bacciu Daniele (Booking)",
+      "checkin": "2026-09-02",
+      "checkout": "2026-09-16",
+      "price": "",
+      "channel": "Krossbooking"
+    },
+    {
+      "id": 2006,
+      "aptId": 2,
+      "guest": "Bloccata",
+      "checkin": "2026-09-19",
+      "checkout": "2026-09-27",
+      "price": "",
+      "channel": "Krossbooking"
+    },
+    {
+      "id": 3000,
+      "aptId": 3,
+      "guest": "Dolso Daniele (Booking)",
+      "checkin": "2026-03-19",
+      "checkout": "2026-03-25",
+      "price": "",
+      "channel": "Krossbooking"
+    },
+    {
+      "id": 3001,
+      "aptId": 3,
+      "guest": "De Mercato Luigi (Booking)",
+      "checkin": "2026-06-27",
+      "checkout": "2026-07-04",
+      "price": "",
+      "channel": "Krossbooking"
+    },
+    {
+      "id": 3002,
+      "aptId": 3,
+      "guest": "Gavioli Barbara (Booking)",
+      "checkin": "2026-07-04",
+      "checkout": "2026-07-11",
+      "price": "",
+      "channel": "Krossbooking"
+    },
+    {
+      "id": 3003,
+      "aptId": 3,
+      "guest": "Gio Batta Figari",
+      "checkin": "2026-07-14",
+      "checkout": "2026-08-01",
+      "price": "",
+      "channel": "Krossbooking"
+    },
+    {
+      "id": 3004,
+      "aptId": 3,
+      "guest": "Massimo Barducci",
+      "checkin": "2026-08-01",
+      "checkout": "2026-08-08",
+      "price": "",
+      "channel": "Krossbooking"
+    },
+    {
+      "id": 3005,
+      "aptId": 3,
+      "guest": "Fossati Michela (Booking)",
+      "checkin": "2026-08-17",
+      "checkout": "2026-08-29",
+      "price": "",
+      "channel": "Krossbooking"
+    },
+    {
+      "id": 3006,
+      "aptId": 3,
+      "guest": "Davide Polenta",
+      "checkin": "2026-08-29",
+      "checkout": "2026-09-05",
+      "price": "",
+      "channel": "Krossbooking"
+    }
+  ]
+}
