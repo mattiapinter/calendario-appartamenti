@@ -1,0 +1,147 @@
+{
+  "name": "Calendario Appartamenti - iCal → GitHub",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": { "interval": [{ "field": "hours", "hoursInterval": 1 }] }
+      },
+      "id": "schedule",
+      "name": "Ogni ora",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://ical.krossbooking.com/ical/g/appartamentibrigadoi/c9f865b53f71e2f581a7748d1b03a9ff.ics",
+        "options": {}
+      },
+      "id": "ical_mattia",
+      "name": "iCal Casa Mattia",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [460, 160]
+    },
+    {
+      "parameters": {
+        "url": "https://ical.krossbooking.com/ical/g/appartamentibrigadoi/78c5c9491ba3e2f6f7e9412c0ffb0e62.ics",
+        "options": {}
+      },
+      "id": "ical_marika",
+      "name": "iCal Casa Marika",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://ical.krossbooking.com/ical/g/appartamentibrigadoi/5e88e029402e01e7e0c1387fb7ed5d14.ics",
+        "options": {}
+      },
+      "id": "ical_tone",
+      "name": "iCal Nono Tone",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [460, 440]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "// Parsa i 3 feed iCal e produce un array di prenotazioni\n\nfunction parseIcal(raw, aptId) {\n  const bookings = [];\n  const events = raw.split('BEGIN:VEVENT');\n  events.shift(); // rimuove l'header\n\n  events.forEach((evt, idx) => {\n    const get = (field) => {\n      const match = evt.match(new RegExp(field + '[^:]*:([^\\r\\n]+)'));\n      return match ? match[1].trim() : '';\n    };\n\n    const dtstart = get('DTSTART');\n    const dtend   = get('DTEND');\n    const summary = get('SUMMARY') || 'Ospite';\n\n    if (!dtstart || !dtend) return;\n\n    // Converte YYYYMMDD o YYYYMMDDTHHmmssZ in YYYY-MM-DD\n    const toDate = (s) => {\n      const d = s.replace(/T.*/, '').replace(/Z$/, '');\n      return d.slice(0,4) + '-' + d.slice(4,6) + '-' + d.slice(6,8);\n    };\n\n    // iCal: SUMMARY di solito è il nome ospite o \"CLOSED\" per blocchi\n    // Ignora blocchi generici\n    const summaryClean = summary.replace(/\\\\n/g,' ').replace(/\\\\,/g,',').trim();\n    if (['CLOSED','BLOCKED','NOT AVAILABLE','Airbnb (Not available)'].includes(summaryClean.toUpperCase())) return;\n\n    bookings.push({\n      id: aptId * 1000 + idx,\n      aptId,\n      guest: summaryClean,\n      checkin:  toDate(dtstart),\n      checkout: toDate(dtend),\n      price: '',\n      channel: 'Krossbooking'\n    });\n  });\n\n  return bookings;\n}\n\n// Gli item arrivano in ordine: [0]=Mattia, [1]=Marika, [2]=Tone\nconst rawMattia = items[0].json.data || items[0].json.body || Object.values(items[0].json)[0] || '';\nconst rawMarika = items[1].json.data || items[1].json.body || Object.values(items[1].json)[0] || '';\nconst rawTone   = items[2].json.data || items[2].json.body || Object.values(items[2].json)[0] || '';\n\nconst all = [\n  ...parseIcal(String(rawMattia), 1),\n  ...parseIcal(String(rawMarika), 2),\n  ...parseIcal(String(rawTone),   3),\n];\n\nreturn [{ json: { bookings: all } }];"
+      },
+      "id": "parse",
+      "name": "Parsa iCal",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [700, 300]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "// Prepara il payload per GitHub API (base64 del JSON)\nconst bookings = items[0].json.bookings;\nconst content = JSON.stringify(bookings, null, 2);\nconst encoded = Buffer.from(content).toString('base64');\nreturn [{ json: { content: encoded, bookings } }];"
+      },
+      "id": "encode",
+      "name": "Codifica JSON",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [920, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://api.github.com/repos/mattiapinter/calendario-appartamenti/contents/prenotazioni.json",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {},
+        "headerParameters": {
+          "parameters": [
+            { "name": "Accept", "value": "application/vnd.github+json" },
+            { "name": "X-GitHub-Api-Version", "value": "2022-11-28" }
+          ]
+        }
+      },
+      "id": "get_sha",
+      "name": "Ottieni SHA file",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1140, 300],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "// Merge: prende content da nodo Codifica, sha da nodo SHA\nconst content  = items[0].json.content;\nconst bookings = items[0].json.bookings;\nconst sha      = items[1].json.sha || null;\n\nconst body = {\n  message: 'Aggiornamento prenotazioni automatico',\n  content,\n  ...(sha ? { sha } : {})\n};\n\nreturn [{ json: { body: JSON.stringify(body), bookings } }];"
+      },
+      "id": "merge",
+      "name": "Prepara PUT",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1360, 300]
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "https://api.github.com/repos/mattiapinter/calendario-appartamenti/contents/prenotazioni.json",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {},
+        "headerParameters": {
+          "parameters": [
+            { "name": "Accept", "value": "application/vnd.github+json" },
+            { "name": "Content-Type", "value": "application/json" },
+            { "name": "X-GitHub-Api-Version", "value": "2022-11-28" }
+          ]
+        },
+        "bodyParameters": {
+          "parameters": []
+        },
+        "body": "={{ $json.body }}"
+      },
+      "id": "push_github",
+      "name": "Push su GitHub",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1580, 300]
+    }
+  ],
+  "connections": {
+    "Ogni ora": {
+      "main": [[
+        { "node": "iCal Casa Mattia", "type": "main", "index": 0 },
+        { "node": "iCal Casa Marika", "type": "main", "index": 0 },
+        { "node": "iCal Nono Tone",   "type": "main", "index": 0 }
+      ]]
+    },
+    "iCal Casa Mattia": { "main": [[{ "node": "Parsa iCal", "type": "main", "index": 0 }]] },
+    "iCal Casa Marika": { "main": [[{ "node": "Parsa iCal", "type": "main", "index": 1 }]] },
+    "iCal Nono Tone":   { "main": [[{ "node": "Parsa iCal", "type": "main", "index": 2 }]] },
+    "Parsa iCal":       { "main": [[{ "node": "Codifica JSON", "type": "main", "index": 0 }]] },
+    "Codifica JSON":    { "main": [[{ "node": "Ottieni SHA file", "type": "main", "index": 0 }]] },
+    "Ottieni SHA file": { "main": [[{ "node": "Prepara PUT", "type": "main", "index": 0 }]] },
+    "Prepara PUT":      { "main": [[{ "node": "Push su GitHub", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}

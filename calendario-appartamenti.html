@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Calendario</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF7F2;
+    --warm-white: #FFFEFB;
+    --ink: #1A1714;
+    --ink-soft: #4A4540;
+    --ink-muted: #8A857E;
+    --accent: #C8502A;
+    --border: #E8E2D9;
+    --shadow: 0 2px 16px rgba(26,23,20,0.07);
+    --row-height: 100px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  header {
+    background: var(--warm-white);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 16px 10px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow);
+  }
+
+  .header-left {
+    margin-bottom: 10px;
+  }
+
+  .header-left h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .header-left p {
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+    font-style: italic;
+    font-family: 'DM Serif Display', serif;
+    margin-top: 1px;
+  }
+
+  .nav-month {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-btn {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border);
+    background: var(--warm-white);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    color: var(--ink-soft);
+    flex-shrink: 0;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .nav-btn:active { background: var(--ink); color: white; border-color: var(--ink); }
+
+  .month-label {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    text-align: center;
+    letter-spacing: -0.01em;
+    flex: 1;
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    padding: 10px 16px;
+    background: var(--warm-white);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.76rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    padding: 5px 11px 5px 7px;
+    border-radius: 20px;
+    border: 1.5px solid var(--border);
+    background: var(--warm-white);
+    cursor: pointer;
+    transition: opacity 0.15s;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .legend-item.inactive { opacity: 0.32; }
+  .legend-dot { width: 9px; height: 9px; border-radius: 50%; }
+
+  main { padding: 20px 16px 60px; }
+
+  .calendar-wrap {
+    background: var(--warm-white);
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .day-headers {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .day-header {
+    padding: 9px 4px;
+    text-align: center;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .day-header:first-child,
+  .day-header:last-child { color: var(--accent); }
+
+  /* Each week is a relative container */
+  .week-row {
+    position: relative;
+  }
+
+  .day-cells-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  .day-cell {
+    height: var(--row-height);
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 6px 5px 4px;
+  }
+  .day-cell:nth-child(7n) { border-right: none; }
+  .day-cell.other-month { background: #F7F4EF; }
+  .day-cell.today { background: #FFFAF0; }
+
+  .day-number {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--ink);
+    width: 24px; height: 24px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+  }
+  .day-cell.other-month .day-number { color: var(--ink-muted); opacity: 0.4; }
+  .day-cell.today .day-number { background: var(--ink); color: white; }
+  .day-cell.weekend .day-number { color: var(--accent); }
+  .day-cell.today.weekend .day-number { background: var(--accent); color: white; }
+
+  /* Event bars — absolutely positioned over the week row */
+  .event-bar {
+    position: absolute;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 0.69rem;
+    font-weight: 500;
+    height: 22px;
+    padding: 0 7px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: filter 0.12s;
+    -webkit-tap-highlight-color: transparent;
+    z-index: 5;
+    line-height: 1;
+  }
+  .event-bar:active { filter: brightness(0.85); }
+  @media (hover: hover) { .event-bar:hover { filter: brightness(0.85); } }
+
+  /* MODAL */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(26,23,20,0.45);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    backdrop-filter: blur(3px);
+  }
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--warm-white);
+    border-radius: 20px;
+    padding: 26px;
+    max-width: 340px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(26,23,20,0.22);
+    animation: modalIn 0.18s ease;
+  }
+  @keyframes modalIn {
+    from { opacity:0; transform:translateY(10px) scale(0.97); }
+    to   { opacity:1; transform:translateY(0) scale(1); }
+  }
+
+  .modal-apt-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+  .modal h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.45rem;
+    margin-bottom: 4px;
+    letter-spacing: -0.02em;
+  }
+  .modal-channel {
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+    margin-bottom: 16px;
+  }
+  .modal-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .detail-box {
+    background: var(--cream);
+    border-radius: 10px;
+    padding: 11px 13px;
+  }
+  .detail-box .label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 3px;
+  }
+  .detail-box .value {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .detail-box.price .value {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    color: var(--accent);
+  }
+  .detail-box.full { grid-column: 1 / -1; }
+
+  .modal-close {
+    width: 100%;
+    padding: 12px;
+    background: var(--ink);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  @media (min-width: 600px) {
+    main { padding: 24px 28px 60px; }
+    :root { --row-height: 118px; }
+    .event-bar { font-size: 0.72rem; height: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <h1>🏠 El Calendario</h1>
+    <p>a prova de semo</p>
+  </div>
+  <div class="nav-month">
+    <button class="nav-btn" onclick="changeMonth(-1)">‹</button>
+    <div class="month-label" id="monthLabel"></div>
+    <button class="nav-btn" onclick="changeMonth(1)">›</button>
+  </div>
+</header>
+
+<div class="legend" id="legend"></div>
+
+<main>
+  <div class="calendar-wrap">
+    <div class="day-headers">
+      <div class="day-header">Lun</div>
+      <div class="day-header">Mar</div>
+      <div class="day-header">Mer</div>
+      <div class="day-header">Gio</div>
+      <div class="day-header">Ven</div>
+      <div class="day-header">Sab</div>
+      <div class="day-header">Dom</div>
+    </div>
+    <div id="calendarBody"></div>
+  </div>
+</main>
+
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="modal-apt-badge" id="modalBadge"></div>
+    <h2 id="modalName"></h2>
+    <div class="modal-channel" id="modalChannel"></div>
+    <div class="modal-details">
+      <div class="detail-box">
+        <div class="label">Check-in</div>
+        <div class="value" id="modalCheckin"></div>
+      </div>
+      <div class="detail-box">
+        <div class="label">Check-out</div>
+        <div class="value" id="modalCheckout"></div>
+      </div>
+      <div class="detail-box">
+        <div class="label">Notti</div>
+        <div class="value" id="modalNights"></div>
+      </div>
+      <div class="detail-box price">
+        <div class="label">Totale</div>
+        <div class="value" id="modalPrice"></div>
+      </div>
+      <div class="detail-box full">
+        <div class="label">Appartamento</div>
+        <div class="value" id="modalApt"></div>
+      </div>
+    </div>
+    <button class="modal-close" onclick="document.getElementById('modalOverlay').classList.remove('open')">Chiudi</button>
+  </div>
+</div>
+
+<script>
+const apartments = [
+  { id:1, name:"Casa Mattia (Bilo)",   color:"#2D6A6A", soft:"#D4EAEA" },
+  { id:2, name:"Casa Marika (Trilo)",  color:"#6B3F9E", soft:"#E5D9F7" },
+  { id:3, name:"A Casa del nono Tone", color:"#B84020", soft:"#F5DDD7" },
+];
+
+
+const today    = new Date();
+let currentYear  = today.getFullYear();
+let currentMonth = today.getMonth();
+let activeApts   = new Set(apartments.map(a => a.id));
+let bookings     = [];
+
+const monthNames = ["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno",
+                    "Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"];
+
+function parseDate(s) { const [y,m,d]=s.split('-').map(Number); return new Date(y,m-1,d); }
+function formatDate(s) { const d=parseDate(s); return d.getDate()+' '+monthNames[d.getMonth()].slice(0,3); }
+function nightsBetween(ci,co) { return Math.round((parseDate(co)-parseDate(ci))/86400000); }
+function getApt(id) { return apartments.find(a=>a.id===id); }
+function d2t(d) { return d.getTime(); }
+function dateOf(y,m,day) { return new Date(y,m,day); }
+
+function renderLegend() {
+  document.getElementById('legend').innerHTML = apartments.map(a=>`
+    <div class="legend-item ${activeApts.has(a.id)?'':'inactive'}" onclick="toggleApt(${a.id})">
+      <span class="legend-dot" style="background:${a.color}"></span>${a.name}
+    </div>`).join('');
+}
+
+function renderCalendar() {
+  document.getElementById('monthLabel').textContent = monthNames[currentMonth]+' '+currentYear;
+  const body = document.getElementById('calendarBody');
+  body.innerHTML = '';
+
+  let startDow = new Date(currentYear, currentMonth, 1).getDay();
+  startDow = startDow===0 ? 6 : startDow-1;
+  const daysInMonth     = new Date(currentYear, currentMonth+1, 0).getDate();
+  const daysInPrevMonth = new Date(currentYear, currentMonth, 0).getDate();
+  const totalCells      = Math.ceil((startDow+daysInMonth)/7)*7;
+  const numWeeks        = totalCells/7;
+
+  // Build cell data
+  const cells = [];
+  for (let i=0;i<totalCells;i++) {
+    let yr=currentYear, mo=currentMonth, day; let isOther=false;
+    if (i<startDow) {
+      day=daysInPrevMonth-startDow+1+i; mo=currentMonth-1;
+      if(mo<0){mo=11;yr--;} isOther=true;
+    } else if (i>=startDow+daysInMonth) {
+      day=i-startDow-daysInMonth+1; mo=currentMonth+1;
+      if(mo>11){mo=0;yr++;} isOther=true;
+    } else { day=i-startDow+1; }
+    cells.push({yr,mo,day,isOther,dow:i%7});
+  }
+
+  // Read actual row height from CSS var (after layout)
+  const rowH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--row-height'))||100;
+  const TOP  = 30;  // px below top of row (below day number)
+  const BAR_H= 22;
+  const GAP  = 0.5; // % left/right gap per cell
+
+  for (let w=0;w<numWeeks;w++) {
+    const week = cells.slice(w*7,(w+1)*7);
+    const weekRow = document.createElement('div');
+    weekRow.className = 'week-row';
+
+    // Background day cells
+    const grid = document.createElement('div');
+    grid.className = 'day-cells-grid';
+    week.forEach(c=>{
+      const cell=document.createElement('div');
+      cell.className='day-cell';
+      if(c.isOther) cell.classList.add('other-month');
+      const isToday = !c.isOther && c.day===today.getDate() && currentMonth===today.getMonth() && currentYear===today.getFullYear();
+      if(isToday) cell.classList.add('today');
+      if(c.dow===5||c.dow===6) cell.classList.add('weekend');
+      const num=document.createElement('div');
+      num.className='day-number';
+      num.textContent=c.day;
+      cell.appendChild(num);
+      grid.appendChild(cell);
+    });
+    weekRow.appendChild(grid);
+
+    const weekStart = dateOf(week[0].yr, week[0].mo, week[0].day);
+    const weekEnd   = dateOf(week[6].yr, week[6].mo, week[6].day);
+
+    // Active bookings in this week
+    const visible = bookings.filter(b=>{
+      if(!activeApts.has(b.aptId)) return false;
+      const ci=parseDate(b.checkin);
+      const coDay=parseDate(b.checkout); // checkout = first free day
+      const lastOcc=new Date(d2t(coDay)-86400000);
+      return d2t(lastOcc)>=d2t(weekStart) && d2t(ci)<=d2t(weekEnd);
+    }).sort((a,b)=>a.aptId-b.aptId);
+
+    // Lane assignment (prevent vertical overlap)
+    // lane → timestamp of next free start
+    const laneNext = [];
+
+    visible.forEach(b=>{
+      const ci     = parseDate(b.checkin);
+      const coDay  = parseDate(b.checkout);
+      const lastOcc= new Date(d2t(coDay)-86400000);
+
+      const barStart = d2t(ci)>=d2t(weekStart) ? ci : weekStart;
+      const barEnd   = d2t(lastOcc)<=d2t(weekEnd) ? lastOcc : weekEnd;
+
+      const colStart = week.findIndex(c=>d2t(dateOf(c.yr,c.mo,c.day))===d2t(barStart));
+      const colEnd   = week.findIndex(c=>d2t(dateOf(c.yr,c.mo,c.day))===d2t(barEnd));
+      if(colStart===-1||colEnd===-1) return;
+
+      // Find free lane
+      let lane=0;
+      while(laneNext[lane]!==undefined && laneNext[lane]>d2t(barStart)) lane++;
+      laneNext[lane]=d2t(barEnd)+86400000;
+
+      const apt=getApt(b.aptId);
+      const colW=100/7;
+      const left=(colStart*colW)+GAP;
+      const width=(colEnd-colStart+1)*colW-GAP*2;
+      const topPx=TOP+lane*(BAR_H+3);
+
+      const bar=document.createElement('div');
+      bar.className='event-bar';
+      bar.style.cssText=`
+        left:${left}%;
+        width:${width}%;
+        top:${topPx}px;
+        background:${apt.soft};
+        color:${apt.color};
+        border:1.5px solid ${apt.color}33;
+      `;
+
+      const isCI = d2t(ci)===d2t(barStart);
+      bar.textContent = (isCI?'🔑 ':'')+b.guest.split(' ')[0];
+      bar.addEventListener('click',()=>openModal(b));
+      weekRow.appendChild(bar);
+    });
+
+    body.appendChild(weekRow);
+  }
+}
+
+function render() { renderLegend(); renderCalendar(); }
+
+function changeMonth(d) {
+  currentMonth+=d;
+  if(currentMonth>11){currentMonth=0;currentYear++;}
+  if(currentMonth<0){currentMonth=11;currentYear--;}
+  render();
+}
+
+function toggleApt(id) {
+  if(activeApts.has(id)){if(activeApts.size>1)activeApts.delete(id);}
+  else activeApts.add(id);
+  render();
+}
+
+function openModal(b) {
+  const apt=getApt(b.aptId);
+  document.getElementById('modalBadge').textContent=apt.name;
+  document.getElementById('modalBadge').style.background=apt.soft;
+  document.getElementById('modalBadge').style.color=apt.color;
+  document.getElementById('modalName').textContent=b.guest;
+  document.getElementById('modalChannel').textContent='📡 '+b.channel;
+  document.getElementById('modalCheckin').textContent=formatDate(b.checkin);
+  document.getElementById('modalCheckout').textContent=formatDate(b.checkout);
+  document.getElementById('modalNights').textContent=nightsBetween(b.checkin,b.checkout)+' notti';
+  document.getElementById('modalPrice').textContent=b.price;
+  document.getElementById('modalApt').textContent=apt.name;
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function closeModal(e) {
+  if(e.target===document.getElementById('modalOverlay'))
+    document.getElementById('modalOverlay').classList.remove('open');
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────
+fetch('prenotazioni.json?t=' + Date.now())
+  .then(r => r.json())
+  .then(data => { bookings = data; render(); })
+  .catch(() => render()); // calendario vuoto se il JSON non esiste ancora
+
