@@ -52,6 +52,15 @@
   .legend-item.inactive { opacity: 0.32; }
   .legend-dot { width: 9px; height: 9px; border-radius: 50%; }
 
+  .last-update {
+    padding: 7px 16px;
+    background: var(--warm-white);
+    border-bottom: 1px solid var(--border);
+    font-size: 0.7rem;
+    color: var(--ink-muted);
+    text-align: right;
+  }
+
   main { padding: 20px 16px 60px; }
   .calendar-wrap { background: var(--warm-white); border-radius: 14px; border: 1px solid var(--border); overflow: hidden; box-shadow: var(--shadow); }
   .day-headers { display: grid; grid-template-columns: repeat(7, 1fr); border-bottom: 1px solid var(--border); }
@@ -76,6 +85,10 @@
     display: flex; align-items: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     transition: filter 0.12s; -webkit-tap-highlight-color: transparent; z-index: 5; line-height: 1;
   }
+  /* Pill che finisce a metà cella = checkout */
+  .event-bar.ends-half { border-radius: 5px 0 0 5px; }
+  /* Pill che inizia a metà cella = checkin stesso giorno di un checkout */
+  .event-bar.starts-half { border-radius: 0 5px 5px 0; }
   .event-bar:active { filter: brightness(0.85); }
 
   .modal-overlay {
@@ -118,6 +131,7 @@
 </header>
 
 <div class="legend" id="legend"></div>
+<div class="last-update" id="lastUpdate"></div>
 
 <main>
   <div class="calendar-wrap">
@@ -144,7 +158,6 @@
       <div class="detail-box"><div class="label">Check-out</div><div class="value" id="modalCheckout"></div></div>
       <div class="detail-box"><div class="label">Notti</div><div class="value" id="modalNights"></div></div>
       <div class="detail-box"><div class="label">Appartamento</div><div class="value" id="modalApt"></div></div>
-      <div class="detail-box full"><div class="label">Canale</div><div class="value" id="modalChannelFull"></div></div>
     </div>
     <button class="modal-close" id="modalClose">Chiudi</button>
   </div>
@@ -215,6 +228,7 @@ function renderCalendar() {
   }
 
   const TOP = 30, BAR_H = 22, GAP = 0.5;
+  const colW = 100 / 7;
 
   for (let w = 0; w < numWeeks; w++) {
     const week = cells.slice(w * 7, (w + 1) * 7);
@@ -241,38 +255,51 @@ function renderCalendar() {
     const weekStart = dateOf(week[0].yr, week[0].mo, week[0].day);
     const weekEnd   = dateOf(week[6].yr, week[6].mo, week[6].day);
 
+    // Prenotazioni visibili questa settimana
+    // La pill va dal checkin fino a METÀ del giorno di checkout
     const visible = bookings.filter(b => {
       if (!activeApts.has(b.aptId)) return false;
       const ci = parseDate(b.checkin);
-      const lastOcc = new Date(d2t(parseDate(b.checkout)) - 86400000);
-      return d2t(lastOcc) >= d2t(weekStart) && d2t(ci) <= d2t(weekEnd);
+      const co = parseDate(b.checkout); // checkout = la pill arriva a metà di questo giorno
+      return d2t(co) >= d2t(weekStart) && d2t(ci) <= d2t(weekEnd);
     }).sort((a, b) => a.aptId - b.aptId);
 
     const laneNext = [];
     visible.forEach(b => {
-      const ci      = parseDate(b.checkin);
-      const lastOcc = new Date(d2t(parseDate(b.checkout)) - 86400000);
+      const ci = parseDate(b.checkin);
+      const co = parseDate(b.checkout);
+
+      // barStart = primo giorno visibile nella settimana
       const barStart = d2t(ci) >= d2t(weekStart) ? ci : weekStart;
-      const barEnd   = d2t(lastOcc) <= d2t(weekEnd) ? lastOcc : weekEnd;
+      // barEnd = giorno checkout (la pill finirà a metà di quel giorno)
+      const barEndDay = d2t(co) <= d2t(weekEnd) ? co : weekEnd;
 
       const colStart = week.findIndex(c => d2t(dateOf(c.yr, c.mo, c.day)) === d2t(barStart));
-      const colEnd   = week.findIndex(c => d2t(dateOf(c.yr, c.mo, c.day)) === d2t(barEnd));
-      if (colStart === -1 || colEnd === -1) return;
+      const colEnd   = week.findIndex(c => d2t(dateOf(c.yr, c.mo, c.day)) === d2t(barEndDay));
 
+      // Se checkout è oltre la settimana, la pill arriva fino a fine settimana (colEnd = 6)
+      const col2 = colEnd === -1 ? 6 : colEnd;
+      if (colStart === -1) return;
+
+      // Lane
       let lane = 0;
       while (laneNext[lane] !== undefined && laneNext[lane] > d2t(barStart)) lane++;
-      laneNext[lane] = d2t(barEnd) + 86400000;
+      laneNext[lane] = d2t(barEndDay) + 86400000;
 
       const apt = getApt(b.aptId);
-      const colW  = 100 / 7;
-      const left  = colStart * colW + GAP;
-      const width = (colEnd - colStart + 1) * colW - GAP * 2;
       const topPx = TOP + lane * (BAR_H + 3);
+      const isCI = d2t(ci) === d2t(barStart);
+
+      // La pill finisce a metà del giorno di checkout se il checkout cade in questa settimana
+      const checkoutInWeek = colEnd !== -1;
+      // width: se checkout è in settimana, arriva a metà di quella colonna (+ 0.5 colonne)
+      const fullCols = col2 - colStart + (checkoutInWeek ? 0.5 : 1);
+      const left  = colStart * colW + GAP;
+      const width = fullCols * colW - GAP * 2;
 
       const bar = document.createElement('div');
       bar.className = 'event-bar';
       bar.style.cssText = `left:${left}%;width:${width}%;top:${topPx}px;background:${apt.soft};color:${apt.color};border:1.5px solid ${apt.color}33;`;
-      const isCI = d2t(ci) === d2t(barStart);
       bar.textContent = (isCI ? '🔑 ' : '') + b.guest.split(' ')[0];
       bar.addEventListener('click', () => openModal(b));
       weekRow.appendChild(bar);
@@ -295,11 +322,9 @@ function openModal(b) {
   document.getElementById('modalCheckout').textContent = formatDate(b.checkout);
   document.getElementById('modalNights').textContent = nightsBetween(b.checkin, b.checkout) + ' notti';
   document.getElementById('modalApt').textContent = apt.name;
-  document.getElementById('modalChannelFull').textContent = b.channel;
   document.getElementById('modalOverlay').classList.add('open');
 }
 
-// Event listeners — no onclick attributes
 document.getElementById('btnPrev').addEventListener('click', function() {
   currentMonth--;
   if (currentMonth < 0) { currentMonth = 11; currentYear--; }
@@ -320,7 +345,19 @@ document.getElementById('modalOverlay').addEventListener('click', function(e) {
   if (e.target === this) this.classList.remove('open');
 });
 
-// Carica prenotazioni
+// Carica prenotazioni e mostra data aggiornamento
+fetch('https://api.github.com/repos/mattiapinter/calendario-appartamenti/commits?path=prenotazioni.json&per_page=1')
+  .then(r => r.json())
+  .then(commits => {
+    if (commits && commits[0]) {
+      const d = new Date(commits[0].commit.committer.date);
+      const ore = d.toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' });
+      const data = d.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
+      document.getElementById('lastUpdate').textContent = '🔄 Ultimo aggiornamento: ' + data + ' alle ' + ore;
+    }
+  })
+  .catch(() => {});
+
 fetch('https://raw.githubusercontent.com/mattiapinter/calendario-appartamenti/main/prenotazioni.json?t=' + Date.now())
   .then(r => r.json())
   .then(data => { bookings = data; render(); })
