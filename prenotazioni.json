@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-03-25T06:30:15.698Z",
+  "lastChecked": "2026-03-25T07:00:15.269Z",
   "bookings": [
     {
       "id": 1000,
@@ -112,15 +112,6 @@
     {
       "id": 3000,
       "aptId": 3,
-      "guest": "Dolso Daniele (Booking)",
-      "checkin": "2026-03-19",
-      "checkout": "2026-03-25",
-      "price": "",
-      "channel": "Krossbooking"
-    },
-    {
-      "id": 3001,
-      "aptId": 3,
       "guest": "De Mercato Luigi (Booking)",
       "checkin": "2026-06-27",
       "checkout": "2026-07-04",
@@ -128,7 +119,7 @@
       "channel": "Krossbooking"
     },
     {
-      "id": 3002,
+      "id": 3001,
       "aptId": 3,
       "guest": "Gavioli Barbara (Booking)",
       "checkin": "2026-07-04",
@@ -137,7 +128,7 @@
       "channel": "Krossbooking"
     },
     {
-      "id": 3003,
+      "id": 3002,
       "aptId": 3,
       "guest": "Gio Batta Figari",
       "checkin": "2026-07-14",
@@ -146,7 +137,7 @@
       "channel": "Krossbooking"
     },
     {
-      "id": 3004,
+      "id": 3003,
       "aptId": 3,
       "guest": "Massimo Barducci",
       "checkin": "2026-08-01",
@@ -155,7 +146,7 @@
       "channel": "Krossbooking"
     },
     {
-      "id": 3005,
+      "id": 3004,
       "aptId": 3,
       "guest": "Fossati Michela (Booking)",
       "checkin": "2026-08-17",
@@ -164,7 +155,7 @@
       "channel": "Krossbooking"
     },
     {
-      "id": 3006,
+      "id": 3005,
       "aptId": 3,
       "guest": "Davide Polenta",
       "checkin": "2026-08-29",
