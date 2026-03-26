@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-03-26T21:00:15.374Z",
+  "lastChecked": "2026-03-26T21:30:15.198Z",
   "bookings": [
     {
       "id": 1000,
@@ -114,7 +114,7 @@
       "aptId": 2,
       "guest": "Bloccata",
       "checkin": "2026-09-19",
-      "checkout": "2026-09-27",
+      "checkout": "2026-09-26",
       "price": "",
       "channel": "Krossbooking"
     },
