@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-03-28T18:30:15.364Z",
+  "lastChecked": "2026-03-28T19:00:15.127Z",
   "bookings": [
     {
       "id": 1000,
@@ -31,6 +31,15 @@
     {
       "id": 1003,
       "aptId": 1,
+      "guest": "Arianna Maggioni (Airbnb)",
+      "checkin": "2026-08-10",
+      "checkout": "2026-08-20",
+      "price": "",
+      "channel": "Krossbooking"
+    },
+    {
+      "id": 1004,
+      "aptId": 1,
       "guest": "Greta Rossi (Airbnb)",
       "checkin": "2026-08-31",
       "checkout": "2026-09-11",
@@ -38,7 +47,7 @@
       "channel": "Krossbooking"
     },
     {
-      "id": 1004,
+      "id": 1005,
       "aptId": 1,
       "guest": "Bloccata",
       "checkin": "2026-04-22",
