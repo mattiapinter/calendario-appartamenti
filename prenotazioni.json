@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-03-29T15:30:15.269Z",
+  "lastChecked": "2026-03-29T16:00:15.252Z",
   "bookings": [
     {
       "id": 1000,
@@ -48,6 +48,15 @@
     },
     {
       "id": 1005,
+      "aptId": 1,
+      "guest": "Castellani Alberta",
+      "checkin": "2026-09-12",
+      "checkout": "2026-10-12",
+      "price": "",
+      "channel": "Krossbooking"
+    },
+    {
+      "id": 1006,
       "aptId": 1,
       "guest": "Bloccata",
       "checkin": "2026-04-22",
