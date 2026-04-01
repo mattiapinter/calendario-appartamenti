@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-04-01T13:00:16.380Z",
+  "lastChecked": "2026-04-01T13:30:27.813Z",
   "bookings": [
     {
       "id": 1000,
@@ -121,15 +121,6 @@
     {
       "id": 2006,
       "aptId": 2,
-      "guest": "Alessandro Bezzo",
-      "checkin": "2026-08-16",
-      "checkout": "2026-08-23",
-      "price": "",
-      "channel": "Krossbooking"
-    },
-    {
-      "id": 2007,
-      "aptId": 2,
       "guest": "Bacciu Daniele (Booking)",
       "checkin": "2026-09-02",
       "checkout": "2026-09-16",
@@ -137,7 +128,7 @@
       "channel": "Krossbooking"
     },
     {
-      "id": 2008,
+      "id": 2007,
       "aptId": 2,
       "guest": "Bloccata",
       "checkin": "2026-09-19",
