@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-04-13T11:00:15.731Z",
+  "lastChecked": "2026-04-13T11:30:15.690Z",
   "bookings": [
     {
       "id": 1000,
@@ -85,15 +85,6 @@
     {
       "id": 2002,
       "aptId": 2,
-      "guest": "Nyolczas Peter (Booking)",
-      "checkin": "2026-06-04",
-      "checkout": "2026-06-11",
-      "price": "",
-      "channel": "Krossbooking"
-    },
-    {
-      "id": 2003,
-      "aptId": 2,
       "guest": "Merai Ester (Booking)",
       "checkin": "2026-06-16",
       "checkout": "2026-06-30",
@@ -101,7 +92,7 @@
       "channel": "Krossbooking"
     },
     {
-      "id": 2004,
+      "id": 2003,
       "aptId": 2,
       "guest": "Sochor Martin (Booking)",
       "checkin": "2026-07-03",
@@ -110,7 +101,7 @@
       "channel": "Krossbooking"
     },
     {
-      "id": 2005,
+      "id": 2004,
       "aptId": 2,
       "guest": "Belibani Anastasia (Booking)",
       "checkin": "2026-07-27",
@@ -119,7 +110,7 @@
       "channel": "Krossbooking"
     },
     {
-      "id": 2006,
+      "id": 2005,
       "aptId": 2,
       "guest": "Jovanovic Ivan (Booking)",
       "checkin": "2026-08-04",
@@ -128,7 +119,7 @@
       "channel": "Krossbooking"
     },
     {
-      "id": 2007,
+      "id": 2006,
       "aptId": 2,
       "guest": "Zatti Paolo (Booking)",
       "checkin": "2026-08-15",
@@ -137,7 +128,7 @@
       "channel": "Krossbooking"
     },
     {
-      "id": 2008,
+      "id": 2007,
       "aptId": 2,
       "guest": "Bacciu Daniele (Booking)",
       "checkin": "2026-09-02",
@@ -146,7 +137,7 @@
       "channel": "Krossbooking"
     },
     {
-      "id": 2009,
+      "id": 2008,
       "aptId": 2,
       "guest": "Bloccata",
       "checkin": "2026-09-19",
