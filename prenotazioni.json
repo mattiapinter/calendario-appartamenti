@@ -1,10 +1,10 @@
 {
-  "lastChecked": "2026-05-07T22:00:24.813Z",
+  "lastChecked": "2026-05-07T22:30:22.715Z",
   "bookings": [
     {
       "id": 1000,
       "aptId": 1,
-      "uid": "20260508T000021CEST-2875w8Vh9V@krossbooking.com",
+      "uid": "20260508T003020CEST-2219blji42@krossbooking.com",
       "guest": "Alberti Matteo (Booking)",
       "checkin": "2026-06-14",
       "checkout": "2026-07-01",
@@ -14,7 +14,7 @@
     {
       "id": 1001,
       "aptId": 1,
-      "uid": "20260508T000021CEST-2877UNh0ZE@krossbooking.com",
+      "uid": "20260508T003020CEST-2220Mm6usF@krossbooking.com",
       "guest": "Kubat Ales (Booking)",
       "checkin": "2026-07-03",
       "checkout": "2026-07-17",
@@ -24,7 +24,7 @@
     {
       "id": 1002,
       "aptId": 1,
-      "uid": "20260508T000021CEST-2878O7MeZ3@krossbooking.com",
+      "uid": "20260508T003020CEST-2221SCLdZw@krossbooking.com",
       "guest": "Brzostek Arkadiusz (Booking)",
       "checkin": "2026-07-20",
       "checkout": "2026-08-10",
@@ -34,7 +34,7 @@
     {
       "id": 1003,
       "aptId": 1,
-      "uid": "20260508T000021CEST-2879AwvRVr@krossbooking.com",
+      "uid": "20260508T003020CEST-2222ic5i6c@krossbooking.com",
       "guest": "Arianna Maggioni (Airbnb)",
       "checkin": "2026-08-10",
       "checkout": "2026-08-20",
@@ -44,7 +44,7 @@
     {
       "id": 1004,
       "aptId": 1,
-      "uid": "20260508T000021CEST-2880vKJvDH@krossbooking.com",
+      "uid": "20260508T003020CEST-2223kKbfg3@krossbooking.com",
       "guest": "Greta Rossi (Airbnb)",
       "checkin": "2026-08-31",
       "checkout": "2026-09-11",
@@ -54,7 +54,7 @@
     {
       "id": 1005,
       "aptId": 1,
-      "uid": "20260508T000021CEST-2881bdZUrk@krossbooking.com",
+      "uid": "20260508T003020CEST-2224e5UG45@krossbooking.com",
       "guest": "Castellani Alberta",
       "checkin": "2026-09-12",
       "checkout": "2026-10-12",
@@ -64,7 +64,7 @@
     {
       "id": 2000,
       "aptId": 2,
-      "uid": "20260508T000022CEST-5733DAofuw@krossbooking.com",
+      "uid": "20260508T003021CEST-4530vjwPIA@krossbooking.com",
       "guest": "Emiliano Camandona (Booking)",
       "checkin": "2026-05-17",
       "checkout": "2026-05-23",
@@ -74,7 +74,7 @@
     {
       "id": 2001,
       "aptId": 2,
-      "uid": "20260508T000022CEST-57356RUPxx@krossbooking.com",
+      "uid": "20260508T003021CEST-4532METC7W@krossbooking.com",
       "guest": "DENIS PIKAIKIN (Booking)",
       "checkin": "2026-05-26",
       "checkout": "2026-06-02",
@@ -84,7 +84,7 @@
     {
       "id": 2002,
       "aptId": 2,
-      "uid": "20260508T000022CEST-5736O6wfU8@krossbooking.com",
+      "uid": "20260508T003021CEST-4533H5RivG@krossbooking.com",
       "guest": "Sochor Martin (Booking)",
       "checkin": "2026-07-03",
       "checkout": "2026-07-17",
@@ -94,7 +94,7 @@
     {
       "id": 2003,
       "aptId": 2,
-      "uid": "20260508T000022CEST-5738tjxw8S@krossbooking.com",
+      "uid": "20260508T003021CEST-4534PefuPU@krossbooking.com",
       "guest": "Saleh Malm Maria (Booking)",
       "checkin": "2026-07-20",
       "checkout": "2026-07-26",
@@ -104,7 +104,7 @@
     {
       "id": 2004,
       "aptId": 2,
-      "uid": "20260508T000022CEST-5739P5RBvo@krossbooking.com",
+      "uid": "20260508T003021CEST-4535G9bTje@krossbooking.com",
       "guest": "Belibani Anastasia (Booking)",
       "checkin": "2026-07-27",
       "checkout": "2026-08-02",
@@ -114,7 +114,7 @@
     {
       "id": 2005,
       "aptId": 2,
-      "uid": "20260508T000022CEST-5740Udx6H4@krossbooking.com",
+      "uid": "20260508T003021CEST-45364Xmpbm@krossbooking.com",
       "guest": "Jovanovic Ivan (Booking)",
       "checkin": "2026-08-04",
       "checkout": "2026-08-14",
@@ -124,7 +124,7 @@
     {
       "id": 2006,
       "aptId": 2,
-      "uid": "20260508T000022CEST-5742z7EJnD@krossbooking.com",
+      "uid": "20260508T003021CEST-4537PCh93C@krossbooking.com",
       "guest": "Zatti Paolo (Booking)",
       "checkin": "2026-08-15",
       "checkout": "2026-08-24",
@@ -134,7 +134,7 @@
     {
       "id": 2007,
       "aptId": 2,
-      "uid": "20260508T000022CEST-5744bOhe35@krossbooking.com",
+      "uid": "20260508T003021CEST-45381X78cm@krossbooking.com",
       "guest": "Bacciu Daniele (Booking)",
       "checkin": "2026-09-02",
       "checkout": "2026-09-16",
@@ -144,7 +144,7 @@
     {
       "id": 2008,
       "aptId": 2,
-      "uid": "20260508T000022CEST-57459wLvAV@krossbooking.com",
+      "uid": "20260508T003021CEST-4539HusU5U@krossbooking.com",
       "guest": "Bloccata",
       "checkin": "2026-09-19",
       "checkout": "2026-09-26",
@@ -154,7 +154,7 @@
     {
       "id": 3000,
       "aptId": 3,
-      "uid": "20260508T000023CEST-9988oJLVip@krossbooking.com",
+      "uid": "20260508T003022CEST-6819LUooWI@krossbooking.com",
       "guest": "De Mercato Luigi (Booking)",
       "checkin": "2026-06-27",
       "checkout": "2026-07-04",
@@ -164,7 +164,7 @@
     {
       "id": 3001,
       "aptId": 3,
-      "uid": "20260508T000023CEST-9990AkFV32@krossbooking.com",
+      "uid": "20260508T003022CEST-6821ZM7C4F@krossbooking.com",
       "guest": "Gavioli Barbara (Booking)",
       "checkin": "2026-07-04",
       "checkout": "2026-07-11",
@@ -174,7 +174,7 @@
     {
       "id": 3002,
       "aptId": 3,
-      "uid": "20260508T000023CEST-99913mO7Bv@krossbooking.com",
+      "uid": "20260508T003022CEST-6822zjbGDV@krossbooking.com",
       "guest": "Gio Batta Figari",
       "checkin": "2026-07-14",
       "checkout": "2026-08-01",
@@ -184,7 +184,7 @@
     {
       "id": 3003,
       "aptId": 3,
-      "uid": "20260508T000023CEST-9992SdXIOR@krossbooking.com",
+      "uid": "20260508T003022CEST-6822tV13Bn@krossbooking.com",
       "guest": "Massimo Barducci",
       "checkin": "2026-08-01",
       "checkout": "2026-08-08",
@@ -194,7 +194,7 @@
     {
       "id": 3004,
       "aptId": 3,
-      "uid": "20260508T000023CEST-9992Co4Ajv@krossbooking.com",
+      "uid": "20260508T003022CEST-6823cKrHGt@krossbooking.com",
       "guest": "Fossati Michela (Booking)",
       "checkin": "2026-08-17",
       "checkout": "2026-08-29",
@@ -204,7 +204,7 @@
     {
       "id": 3005,
       "aptId": 3,
-      "uid": "20260508T000023CEST-9993Okdsu3@krossbooking.com",
+      "uid": "20260508T003022CEST-6824vPvg40@krossbooking.com",
       "guest": "Davide Polenta",
       "checkin": "2026-08-29",
       "checkout": "2026-09-05",
