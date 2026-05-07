@@ -503,12 +503,13 @@ function renderExtras(extras) {
       document.getElementById('modalSaveBtn').classList.add('visible');
     });
   } else if (DEBORA_MODE) {
+    const phoneFmt = phone ? `<a href="tel:${phone}" style="color:inherit;text-decoration:none;font-weight:600;">${phone}</a>` : '<span class="extra-empty">Non inserito</span>';
     container.innerHTML = `
       <div class="extra-row">
         <span class="extra-icon">📞</span>
         <div class="extra-info">
           <div class="extra-label">Telefono ospite</div>
-          <div class="extra-value ${phone ? '' : 'extra-empty'}">${phone || 'Non inserito'}</div>
+          <div class="extra-value">${phoneFmt}</div>
         </div>
       </div>
       <div class="extra-row">
@@ -518,33 +519,24 @@ function renderExtras(extras) {
           <div class="extra-value ${guests !== '' ? '' : 'extra-empty'}">${guests !== '' ? guests + ' persone' : 'Non inserito'}</div>
         </div>
       </div>
-      <div class="lenzuola-row" id="lenzuolaRow">
+      <div class="extra-row">
         <span class="extra-icon">🛏️</span>
-        <div class="lenzuola-label">
-          <div class="label">Lenzuola</div>
-          <div class="value" id="lenzuolaText">${lenzuola ? '✅ Incluse' : '❌ Non incluse'}</div>
+        <div class="extra-info">
+          <div class="extra-label">Lenzuola</div>
+          <div class="extra-value">${lenzuola ? '✅ Incluse' : '❌ Non incluse'}</div>
         </div>
-        <div class="lenzuola-toggle ${lenzuola ? 'on' : ''}" id="lenzuolaToggle"></div>
       </div>
       ${notes ? `<div class="extra-row"><span class="extra-icon">📝</span><div class="extra-info"><div class="extra-label">Note</div><div class="extra-value">${notes}</div></div></div>` : ''}
     `;
-    document.getElementById('lenzuolaRow').addEventListener('click', () => {
-      const toggle = document.getElementById('lenzuolaToggle');
-      const isOn = toggle.classList.contains('on');
-      toggle.classList.toggle('on', !isOn);
-      document.getElementById('lenzuolaText').textContent = !isOn ? '✅ Incluse' : '❌ Non incluse';
-      currentExtra = { ...currentExtra, lenzuola: !isOn };
-      extrasChanged = true;
-      document.getElementById('modalSaveBtn').classList.add('visible');
-    });
   } else {
     // read-only for family (no param)
+    const phoneFmt = phone ? `<a href="tel:${phone}" style="color:inherit;text-decoration:none;font-weight:600;">${phone}</a>` : '<span class="extra-empty">Non inserito</span>';
     container.innerHTML = `
       <div class="extra-row">
         <span class="extra-icon">📞</span>
         <div class="extra-info">
           <div class="extra-label">Telefono ospite</div>
-          <div class="extra-value ${phone ? '' : 'extra-empty'}">${phone || 'Non inserito'}</div>
+          <div class="extra-value">${phoneFmt}</div>
         </div>
       </div>
       <div class="extra-row">
