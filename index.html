@@ -235,7 +235,10 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 // ─── MODE DETECTION ───────────────────────────────────────────
 const params      = new URLSearchParams(location.search);
 const DEBORA_MODE = params.get('debora') === '1';
-const ADMIN_MODE  = params.get('admin')  === '1';
+// ?admin=1 sets localStorage so home screen shortcut works too
+if (params.get('admin') === '1') localStorage.setItem('adminMode', '1');
+if (params.get('admin') === '0') localStorage.removeItem('adminMode');
+const ADMIN_MODE  = localStorage.getItem('adminMode') === '1';
 
 const allApartments = [
   { id:1, name:'Casa Mattia (Bilo)',   color:'#2D6A6A', soft:'#D4EAEA' },
