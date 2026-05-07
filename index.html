@@ -92,16 +92,19 @@
 
   .modal-overlay {
     position: fixed; inset: 0; background: rgba(26,23,20,0.45);
-    z-index: 1000; display: none; align-items: center; justify-content: center;
-    padding: 20px; backdrop-filter: blur(3px);
+    z-index: 1000; display: none; align-items: flex-start; justify-content: center;
+    padding: 20px; padding-top: max(20px, env(safe-area-inset-top));
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
+    overflow-y: auto; backdrop-filter: blur(3px);
   }
   .modal-overlay.open { display: flex; }
   .modal {
     background: var(--warm-white); border-radius: 20px; padding: 26px;
-    max-width: 360px; width: 100%;
+    max-width: 360px; width: 100%; margin: auto;
     box-shadow: 0 20px 60px rgba(26,23,20,0.22);
     animation: modalIn 0.18s ease;
-    max-height: 90vh; overflow-y: auto;
+    max-height: 90vh; max-height: 90dvh;
+    overflow-y: auto; -webkit-overflow-scrolling: touch;
   }
   @keyframes modalIn { from { opacity:0; transform:translateY(10px) scale(0.97); } to { opacity:1; transform:translateY(0) scale(1); } }
   .modal-apt-badge { display: inline-block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; margin-bottom: 12px; }
@@ -225,6 +228,7 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 // ─── MODE DETECTION ───────────────────────────────────────────
 const params      = new URLSearchParams(location.search);
 const DEBORA_MODE = params.get('debora') === '1';
+const ADMIN_MODE  = params.get('admin')  === '1';
 
 const allApartments = [
   { id:1, name:'Casa Mattia (Bilo)',   color:'#2D6A6A', soft:'#D4EAEA' },
@@ -452,42 +456,7 @@ function renderExtras(extras) {
   const lenzuola = extras.lenzuola || false;
   const notes    = extras.notes    || '';
 
-  if (DEBORA_MODE) {
-    container.innerHTML = `
-      <div class="extra-row">
-        <span class="extra-icon">📞</span>
-        <div class="extra-info">
-          <div class="extra-label">Telefono ospite</div>
-          <div class="extra-value ${phone ? '' : 'extra-empty'}">${phone || 'Non inserito'}</div>
-        </div>
-      </div>
-      <div class="extra-row">
-        <span class="extra-icon">👥</span>
-        <div class="extra-info">
-          <div class="extra-label">Numero ospiti</div>
-          <div class="extra-value ${guests !== '' ? '' : 'extra-empty'}">${guests !== '' ? guests + ' persone' : 'Non inserito'}</div>
-        </div>
-      </div>
-      <div class="lenzuola-row" id="lenzuolaRow">
-        <span class="extra-icon">🛏️</span>
-        <div class="lenzuola-label">
-          <div class="label">Lenzuola</div>
-          <div class="value" id="lenzuolaText">${lenzuola ? '✅ Incluse' : '❌ Non incluse'}</div>
-        </div>
-        <div class="lenzuola-toggle ${lenzuola ? 'on' : ''}" id="lenzuolaToggle"></div>
-      </div>
-      ${notes ? `<div class="extra-row"><span class="extra-icon">📝</span><div class="extra-info"><div class="extra-label">Note</div><div class="extra-value">${notes}</div></div></div>` : ''}
-    `;
-    document.getElementById('lenzuolaRow').addEventListener('click', () => {
-      const toggle = document.getElementById('lenzuolaToggle');
-      const isOn = toggle.classList.contains('on');
-      toggle.classList.toggle('on', !isOn);
-      document.getElementById('lenzuolaText').textContent = !isOn ? '✅ Incluse' : '❌ Non incluse';
-      currentExtra = { ...currentExtra, lenzuola: !isOn };
-      extrasChanged = true;
-      document.getElementById('modalSaveBtn').classList.add('visible');
-    });
-  } else {
+  if (ADMIN_MODE) {
     container.innerHTML = `
       <div class="extra-row editable">
         <span class="extra-icon">📞</span>
@@ -533,6 +502,67 @@ function renderExtras(extras) {
       extrasChanged = true;
       document.getElementById('modalSaveBtn').classList.add('visible');
     });
+  } else if (DEBORA_MODE) {
+    container.innerHTML = `
+      <div class="extra-row">
+        <span class="extra-icon">📞</span>
+        <div class="extra-info">
+          <div class="extra-label">Telefono ospite</div>
+          <div class="extra-value ${phone ? '' : 'extra-empty'}">${phone || 'Non inserito'}</div>
+        </div>
+      </div>
+      <div class="extra-row">
+        <span class="extra-icon">👥</span>
+        <div class="extra-info">
+          <div class="extra-label">Numero ospiti</div>
+          <div class="extra-value ${guests !== '' ? '' : 'extra-empty'}">${guests !== '' ? guests + ' persone' : 'Non inserito'}</div>
+        </div>
+      </div>
+      <div class="lenzuola-row" id="lenzuolaRow">
+        <span class="extra-icon">🛏️</span>
+        <div class="lenzuola-label">
+          <div class="label">Lenzuola</div>
+          <div class="value" id="lenzuolaText">${lenzuola ? '✅ Incluse' : '❌ Non incluse'}</div>
+        </div>
+        <div class="lenzuola-toggle ${lenzuola ? 'on' : ''}" id="lenzuolaToggle"></div>
+      </div>
+      ${notes ? `<div class="extra-row"><span class="extra-icon">📝</span><div class="extra-info"><div class="extra-label">Note</div><div class="extra-value">${notes}</div></div></div>` : ''}
+    `;
+    document.getElementById('lenzuolaRow').addEventListener('click', () => {
+      const toggle = document.getElementById('lenzuolaToggle');
+      const isOn = toggle.classList.contains('on');
+      toggle.classList.toggle('on', !isOn);
+      document.getElementById('lenzuolaText').textContent = !isOn ? '✅ Incluse' : '❌ Non incluse';
+      currentExtra = { ...currentExtra, lenzuola: !isOn };
+      extrasChanged = true;
+      document.getElementById('modalSaveBtn').classList.add('visible');
+    });
+  } else {
+    // read-only for family (no param)
+    container.innerHTML = `
+      <div class="extra-row">
+        <span class="extra-icon">📞</span>
+        <div class="extra-info">
+          <div class="extra-label">Telefono ospite</div>
+          <div class="extra-value ${phone ? '' : 'extra-empty'}">${phone || 'Non inserito'}</div>
+        </div>
+      </div>
+      <div class="extra-row">
+        <span class="extra-icon">👥</span>
+        <div class="extra-info">
+          <div class="extra-label">Numero ospiti</div>
+          <div class="extra-value ${guests !== '' ? '' : 'extra-empty'}">${guests !== '' ? guests + ' persone' : 'Non inserito'}</div>
+        </div>
+      </div>
+      <div class="extra-row">
+        <span class="extra-icon">🛏️</span>
+        <div class="extra-info">
+          <div class="extra-label">Lenzuola</div>
+          <div class="extra-value">${lenzuola ? '✅ Incluse' : '❌ Non incluse'}</div>
+        </div>
+      </div>
+      ${notes ? `<div class="extra-row"><span class="extra-icon">📝</span><div class="extra-info"><div class="extra-label">Note</div><div class="extra-value">${notes}</div></div></div>` : ''}
+    `;
   }
 }
 
@@ -543,9 +573,7 @@ document.getElementById('modalSaveBtn').addEventListener('click', async () => {
   btn.classList.add('saving');
 
   let extras;
-  if (DEBORA_MODE) {
-    extras = { ...currentExtra };
-  } else {
+  if (ADMIN_MODE) {
     const toggle = document.getElementById('lenzuolaToggle');
     extras = {
       phone:    document.getElementById('inputPhone').value.trim(),
@@ -553,6 +581,8 @@ document.getElementById('modalSaveBtn').addEventListener('click', async () => {
       lenzuola: toggle ? toggle.classList.contains('on') : false,
       notes:    document.getElementById('inputNotes').value.trim()
     };
+  } else {
+    extras = { ...currentExtra };
   }
 
   const ok = await saveExtras(currentBookingUid, extras);
