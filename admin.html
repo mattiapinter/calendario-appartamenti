@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calendario Admin</title>
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="admin-manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Calendario Admin">
+<meta name="theme-color" content="#2D7A3A">
+<style>
+  body { font-family: sans-serif; display:flex; align-items:center; justify-content:center; height:100vh; margin:0; background:#FAF7F2; }
+  p { color:#555; font-size:1rem; }
+</style>
+<script>
+  localStorage.setItem('adminMode', '1');
+  location.replace('index.html');
+</script>
+</head>
+<body><p>Accesso admin…</p></body>
+</html>
