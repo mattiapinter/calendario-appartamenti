@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-05-11T07:00:51.343Z",
+  "lastChecked": "2026-05-11T07:30:51.372Z",
   "bookings": [
     {
       "id": 1000,
@@ -194,6 +194,16 @@
     {
       "id": 3004,
       "aptId": 3,
+      "uid": "3-2026-08-10-2026-08-17",
+      "guest": "Marilena Degani",
+      "checkin": "2026-08-10",
+      "checkout": "2026-08-17",
+      "price": "",
+      "channel": "Krossbooking"
+    },
+    {
+      "id": 3005,
+      "aptId": 3,
       "uid": "3-2026-08-17-2026-08-29",
       "guest": "Fossati Michela (Booking)",
       "checkin": "2026-08-17",
@@ -202,7 +212,7 @@
       "channel": "Krossbooking"
     },
     {
-      "id": 3005,
+      "id": 3006,
       "aptId": 3,
       "uid": "3-2026-08-29-2026-09-05",
       "guest": "Davide Polenta",
