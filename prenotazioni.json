@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-05-23T08:30:34.538Z",
+  "lastChecked": "2026-05-23T09:00:35.068Z",
   "bookings": [
     {
       "id": 1000,
@@ -238,6 +238,16 @@
       "guest": "Davide Polenta",
       "checkin": "2026-08-29",
       "checkout": "2026-09-05",
+      "price": "",
+      "channel": "Krossbooking"
+    },
+    {
+      "id": 3008,
+      "aptId": 3,
+      "uid": "3-2026-09-12-2026-09-19",
+      "guest": "Chiedere a pare",
+      "checkin": "2026-09-12",
+      "checkout": "2026-09-19",
       "price": "",
       "channel": "Krossbooking"
     }
