@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-05-23T21:30:33.398Z",
+  "lastChecked": "2026-05-23T22:00:32.961Z",
   "bookings": [
     {
       "id": 1000,
@@ -64,16 +64,6 @@
     {
       "id": 2000,
       "aptId": 2,
-      "uid": "2-2026-05-17-2026-05-23",
-      "guest": "Emiliano Camandona (Booking)",
-      "checkin": "2026-05-17",
-      "checkout": "2026-05-23",
-      "price": "",
-      "channel": "Krossbooking"
-    },
-    {
-      "id": 2001,
-      "aptId": 2,
       "uid": "2-2026-05-26-2026-06-02",
       "guest": "DENIS PIKAIKIN (Booking)",
       "checkin": "2026-05-26",
@@ -82,7 +72,7 @@
       "channel": "Krossbooking"
     },
     {
-      "id": 2002,
+      "id": 2001,
       "aptId": 2,
       "uid": "2-2026-06-04-2026-06-10",
       "guest": "Biondo Carmen (Booking)",
@@ -92,7 +82,7 @@
       "channel": "Krossbooking"
     },
     {
-      "id": 2003,
+      "id": 2002,
       "aptId": 2,
       "uid": "2-2026-07-03-2026-07-17",
       "guest": "Sochor Martin (Booking)",
@@ -102,7 +92,7 @@
       "channel": "Krossbooking"
     },
     {
-      "id": 2004,
+      "id": 2003,
       "aptId": 2,
       "uid": "2-2026-07-20-2026-07-26",
       "guest": "Saleh Malm Maria (Booking)",
@@ -112,7 +102,7 @@
       "channel": "Krossbooking"
     },
     {
-      "id": 2005,
+      "id": 2004,
       "aptId": 2,
       "uid": "2-2026-07-27-2026-08-02",
       "guest": "Belibani Anastasia (Booking)",
@@ -122,7 +112,7 @@
       "channel": "Krossbooking"
     },
     {
-      "id": 2006,
+      "id": 2005,
       "aptId": 2,
       "uid": "2-2026-08-04-2026-08-14",
       "guest": "Jovanovic Ivan (Booking)",
@@ -132,7 +122,7 @@
       "channel": "Krossbooking"
     },
     {
-      "id": 2007,
+      "id": 2006,
       "aptId": 2,
       "uid": "2-2026-08-15-2026-08-24",
       "guest": "Zatti Paolo (Booking)",
@@ -142,7 +132,7 @@
       "channel": "Krossbooking"
     },
     {
-      "id": 2008,
+      "id": 2007,
       "aptId": 2,
       "uid": "2-2026-09-02-2026-09-16",
       "guest": "Bacciu Daniele (Booking)",
@@ -152,7 +142,7 @@
       "channel": "Krossbooking"
     },
     {
-      "id": 2009,
+      "id": 2008,
       "aptId": 2,
       "uid": "2-2026-09-19-2026-09-26",
       "guest": "Bloccata",
