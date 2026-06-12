@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-06-12T07:30:34.810Z",
+  "lastChecked": "2026-06-12T08:00:33.707Z",
   "bookings": [
     {
       "id": 1000,
@@ -58,16 +58,6 @@
       "guest": "Greta Rossi (Airbnb)",
       "checkin": "2026-08-31",
       "checkout": "2026-09-11",
-      "price": "",
-      "channel": "Krossbooking"
-    },
-    {
-      "id": 1006,
-      "aptId": 1,
-      "uid": "1-2026-09-12-2026-10-12",
-      "guest": "Castellani Alberta",
-      "checkin": "2026-09-12",
-      "checkout": "2026-10-12",
       "price": "",
       "channel": "Krossbooking"
     },
