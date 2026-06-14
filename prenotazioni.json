@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-06-14T14:00:34.024Z",
+  "lastChecked": "2026-06-14T14:30:32.993Z",
   "bookings": [
     {
       "id": 1000,
@@ -53,6 +53,16 @@
     },
     {
       "id": 1005,
+      "aptId": 1,
+      "uid": "1-2026-08-22-2026-08-30",
+      "guest": "Santi Bivona (Airbnb)",
+      "checkin": "2026-08-22",
+      "checkout": "2026-08-30",
+      "price": "",
+      "channel": "Krossbooking"
+    },
+    {
+      "id": 1006,
       "aptId": 1,
       "uid": "1-2026-08-31-2026-09-11",
       "guest": "Greta Rossi (Airbnb)",
