@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-06-17T07:30:41.416Z",
+  "lastChecked": "2026-06-17T08:00:33.173Z",
   "bookings": [
     {
       "id": 1000,
@@ -124,6 +124,16 @@
     {
       "id": 2005,
       "aptId": 2,
+      "uid": "2-2026-08-05-2026-08-12",
+      "guest": "Mattia Zuccolo",
+      "checkin": "2026-08-05",
+      "checkout": "2026-08-12",
+      "price": "",
+      "channel": "Krossbooking"
+    },
+    {
+      "id": 2006,
+      "aptId": 2,
       "uid": "2-2026-08-15-2026-08-24",
       "guest": "Zatti Paolo (Booking)",
       "checkin": "2026-08-15",
@@ -132,7 +142,7 @@
       "channel": "Krossbooking"
     },
     {
-      "id": 2006,
+      "id": 2007,
       "aptId": 2,
       "uid": "2-2026-08-24-2026-08-31",
       "guest": "Masini Giulia (Booking)",
@@ -142,7 +152,7 @@
       "channel": "Krossbooking"
     },
     {
-      "id": 2007,
+      "id": 2008,
       "aptId": 2,
       "uid": "2-2026-09-02-2026-09-16",
       "guest": "Bacciu Daniele (Booking)",
@@ -152,7 +162,7 @@
       "channel": "Krossbooking"
     },
     {
-      "id": 2008,
+      "id": 2009,
       "aptId": 2,
       "uid": "2-2026-09-19-2026-09-26",
       "guest": "Bloccata",
