@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-07-06T10:30:35.868Z",
+  "lastChecked": "2026-07-06T11:00:32.949Z",
   "bookings": [
     {
       "id": 1000,
@@ -123,16 +123,6 @@
     },
     {
       "id": 2006,
-      "aptId": 2,
-      "uid": "2-2026-09-02-2026-09-16",
-      "guest": "Bacciu Daniele (Booking)",
-      "checkin": "2026-09-02",
-      "checkout": "2026-09-16",
-      "price": "",
-      "channel": "Krossbooking"
-    },
-    {
-      "id": 2007,
       "aptId": 2,
       "uid": "2-2026-09-19-2026-09-26",
       "guest": "Bloccata",
