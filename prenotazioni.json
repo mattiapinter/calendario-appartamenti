@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-09-06T19:00:36.048Z",
+  "lastChecked": "2026-09-06T19:30:32.966Z",
   "bookings": [
     {
       "id": 1000,
@@ -48,6 +48,16 @@
       "guest": "Chiedere a pare",
       "checkin": "2026-09-12",
       "checkout": "2026-09-19",
+      "price": "",
+      "channel": "Krossbooking"
+    },
+    {
+      "id": 3001,
+      "aptId": 3,
+      "uid": "3-2027-01-09-2027-01-16",
+      "guest": "Mateusz Ziatkowski",
+      "checkin": "2027-01-09",
+      "checkout": "2027-01-16",
       "price": "",
       "channel": "Krossbooking"
     }
