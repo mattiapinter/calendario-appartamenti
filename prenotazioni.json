@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-09-10T10:00:33.814Z",
+  "lastChecked": "2026-09-10T10:30:33.789Z",
   "bookings": [
     {
       "id": 1000,
@@ -18,6 +18,16 @@
       "guest": "Giada Riva (Airbnb)",
       "checkin": "2026-09-11",
       "checkout": "2026-09-18",
+      "price": "",
+      "channel": "Krossbooking"
+    },
+    {
+      "id": 1002,
+      "aptId": 1,
+      "uid": "1-2026-09-19-2026-10-03",
+      "guest": "Barbora Davidova (Airbnb)",
+      "checkin": "2026-09-19",
+      "checkout": "2026-10-03",
       "price": "",
       "channel": "Krossbooking"
     },
