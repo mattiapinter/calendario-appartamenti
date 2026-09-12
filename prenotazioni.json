@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-09-12T08:30:33.700Z",
+  "lastChecked": "2026-09-12T09:00:33.649Z",
   "bookings": [
     {
       "id": 1000,
@@ -45,7 +45,7 @@
       "id": 3000,
       "aptId": 3,
       "uid": "3-2026-09-12-2026-09-19",
-      "guest": "Chiedere a pare",
+      "guest": "Cristian Dumitrica",
       "checkin": "2026-09-12",
       "checkout": "2026-09-19",
       "price": "",
