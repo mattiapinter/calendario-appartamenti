@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-09-15T21:30:35.093Z",
+  "lastChecked": "2026-09-15T22:00:33.928Z",
   "bookings": [
     {
       "id": 1000,
@@ -23,16 +23,6 @@
     },
     {
       "id": 2000,
-      "aptId": 2,
-      "uid": "2-2026-09-05-2026-09-15",
-      "guest": "Annabelle Putscher (Booking)",
-      "checkin": "2026-09-05",
-      "checkout": "2026-09-15",
-      "price": "",
-      "channel": "Krossbooking"
-    },
-    {
-      "id": 2001,
       "aptId": 2,
       "uid": "2-2026-09-19-2026-09-26",
       "guest": "Bloccata",
