@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-09-19T21:30:33.330Z",
+  "lastChecked": "2026-09-19T22:00:33.038Z",
   "bookings": [
     {
       "id": 1000,
@@ -23,16 +23,6 @@
     },
     {
       "id": 3000,
-      "aptId": 3,
-      "uid": "3-2026-09-12-2026-09-19",
-      "guest": "Cristian Dumitrica",
-      "checkin": "2026-09-12",
-      "checkout": "2026-09-19",
-      "price": "",
-      "channel": "Krossbooking"
-    },
-    {
-      "id": 3001,
       "aptId": 3,
       "uid": "3-2027-01-09-2027-01-16",
       "guest": "Mateusz Ziatkowski",
