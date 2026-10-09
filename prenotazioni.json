@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-10-09T16:00:33.288Z",
+  "lastChecked": "2026-10-09T16:30:33.399Z",
   "bookings": [
     {
       "id": 3000,
@@ -8,6 +8,16 @@
       "guest": "Mateusz Ziatkowski",
       "checkin": "2027-01-09",
       "checkout": "2027-01-16",
+      "price": "",
+      "channel": "Krossbooking"
+    },
+    {
+      "id": 3001,
+      "aptId": 3,
+      "uid": "3-2027-07-18-2027-08-08",
+      "guest": "Gio Batta Figari",
+      "checkin": "2027-07-18",
+      "checkout": "2027-08-08",
       "price": "",
       "channel": "Krossbooking"
     }
