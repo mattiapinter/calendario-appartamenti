@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-10-12T11:00:34.875Z",
+  "lastChecked": "2026-10-12T11:30:33.098Z",
   "bookings": [
     {
       "id": 3000,
@@ -13,6 +13,16 @@
     },
     {
       "id": 3001,
+      "aptId": 3,
+      "uid": "3-2027-02-20-2027-02-27",
+      "guest": "Pechousek Zden k (Booking)",
+      "checkin": "2027-02-20",
+      "checkout": "2027-02-27",
+      "price": "",
+      "channel": "Krossbooking"
+    },
+    {
+      "id": 3002,
       "aptId": 3,
       "uid": "3-2027-07-18-2027-08-08",
       "guest": "Gio Batta Figari",
