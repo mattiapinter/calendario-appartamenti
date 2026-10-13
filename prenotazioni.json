@@ -1,8 +1,18 @@
 {
-  "lastChecked": "2026-10-13T17:30:33.541Z",
+  "lastChecked": "2026-10-13T18:00:33.122Z",
   "bookings": [
     {
       "id": 3000,
+      "aptId": 3,
+      "uid": "3-2026-12-27-2027-01-03",
+      "guest": "Cappelletti Fabio (Booking)",
+      "checkin": "2026-12-27",
+      "checkout": "2027-01-03",
+      "price": "",
+      "channel": "Krossbooking"
+    },
+    {
+      "id": 3001,
       "aptId": 3,
       "uid": "3-2027-01-09-2027-01-16",
       "guest": "Mateusz Ziatkowski",
@@ -12,7 +22,7 @@
       "channel": "Krossbooking"
     },
     {
-      "id": 3001,
+      "id": 3002,
       "aptId": 3,
       "uid": "3-2027-01-30-2027-02-20",
       "guest": "Koronkiewicz Agata (Booking)",
@@ -22,7 +32,7 @@
       "channel": "Krossbooking"
     },
     {
-      "id": 3002,
+      "id": 3003,
       "aptId": 3,
       "uid": "3-2027-02-20-2027-02-27",
       "guest": "Pechousek Zden k (Booking)",
@@ -32,7 +42,7 @@
       "channel": "Krossbooking"
     },
     {
-      "id": 3003,
+      "id": 3004,
       "aptId": 3,
       "uid": "3-2027-07-18-2027-08-08",
       "guest": "Gio Batta Figari",
