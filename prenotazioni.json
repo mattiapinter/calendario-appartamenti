@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-10-18T20:00:34.716Z",
+  "lastChecked": "2026-10-18T20:30:33.096Z",
   "bookings": [
     {
       "id": 3000,
@@ -24,6 +24,16 @@
     {
       "id": 3002,
       "aptId": 3,
+      "uid": "3-2027-01-23-2027-01-30",
+      "guest": "Fantaccini Giacomo",
+      "checkin": "2027-01-23",
+      "checkout": "2027-01-30",
+      "price": "",
+      "channel": "Krossbooking"
+    },
+    {
+      "id": 3003,
+      "aptId": 3,
       "uid": "3-2027-01-30-2027-02-20",
       "guest": "Koronkiewicz Agata (Booking)",
       "checkin": "2027-01-30",
@@ -32,7 +42,7 @@
       "channel": "Krossbooking"
     },
     {
-      "id": 3003,
+      "id": 3004,
       "aptId": 3,
       "uid": "3-2027-02-20-2027-02-27",
       "guest": "Pechousek Zden k (Booking)",
@@ -42,7 +52,7 @@
       "channel": "Krossbooking"
     },
     {
-      "id": 3004,
+      "id": 3005,
       "aptId": 3,
       "uid": "3-2027-07-18-2027-08-08",
       "guest": "Gio Batta Figari",
