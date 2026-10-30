@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-10-30T10:00:33.826Z",
+  "lastChecked": "2026-10-30T10:30:33.382Z",
   "bookings": [
     {
       "id": 3000,
@@ -53,6 +53,16 @@
     },
     {
       "id": 3005,
+      "aptId": 3,
+      "uid": "3-2027-03-01-2027-03-09",
+      "guest": "Olga Lugotvsova",
+      "checkin": "2027-03-01",
+      "checkout": "2027-03-09",
+      "price": "",
+      "channel": "Krossbooking"
+    },
+    {
+      "id": 3006,
       "aptId": 3,
       "uid": "3-2027-07-18-2027-08-08",
       "guest": "Gio Batta Figari",
